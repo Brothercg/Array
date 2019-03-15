@@ -33,12 +33,12 @@ public class Array<E> {
 
     public void add(int index, E e){
 
-        if(size == data.length){
-            throw new IllegalArgumentException("Add failed. Array is full.");
-        }
-
         if(index < 0|| index > size){
             throw new IllegalArgumentException("Add failed. Require index < 0|| index > size.");
+        }
+
+        if(size == data.length){
+            resize(2 * data.length );
         }
 
         for(int i = size -1; i >= index; i--){
@@ -47,6 +47,18 @@ public class Array<E> {
 
         data[index] = e;
         size ++;
+    }
+
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+
+        for(int i = 0; i < size; i++){
+            newData[i] =  data[i];
+        }
+
+        data = newData;
+        newData = null;
+
     }
 
     public void addLast(E e){
@@ -67,6 +79,14 @@ public class Array<E> {
         }
 
         return data[index];
+    }
+
+    public E getFirst(){
+        return get(0);
+    }
+
+    public E getLast() {
+        return get( size - 1);
     }
 
     public boolean contains(E e){
@@ -113,6 +133,10 @@ public class Array<E> {
          */
         data[size] = null;
 
+        if(size == data.length / 4 && data.length / 2 != 0 ){
+            resize(data.length / 2);
+        }
+
         return ret;
     }
 
@@ -142,13 +166,42 @@ public class Array<E> {
         StringBuilder res = new StringBuilder();
         res.append(String.format("Array: Size: = %d , capacity = %d\n", size, data.length));
         res.append('[');
-        for(int i =0; i < size; i++){
+        for(int i = 0; i < size; i ++){
             res.append(data[i]);
-            if(i != size -1)
+            if(i != size - 1)
                 res.append(", ");
         }
         res.append(']');
 
         return res.toString();
+    }
+
+
+
+
+    public static void main(String[] args){
+        Array<Integer> array = new Array<>();
+
+        for(int i = 0; i < 10; i++)
+            array.addLast(i);
+
+        System.out.println(array);
+
+        array.add(1, 100);
+
+        System.out.println(array);
+
+        array.addFirst( -1);
+        System.out.println(array);
+
+        array.remove(2);
+        System.out.println(array);
+
+        array.removeElement(4);
+        System.out.println(array);
+
+        array.removeFirst();
+        System.out.println(array);
+
     }
 }

@@ -1,34 +1,32 @@
+import java.util.Random;
+
 public class Main {
 
+    private static double testQueue(Queue<Integer> q, int opCount){
+
+        long startTime = System.nanoTime();
+
+        Random random = new Random();
+        for(int i = 0; i < opCount; i++)
+            q.enqueue(random.nextInt(Integer.MAX_VALUE));
+        for(int i = 0; i < opCount; i++)
+            q.dequeue();
+
+        long endTime = System.nanoTime();
+
+        return (endTime - startTime) / 1000000000.0;
+    }
     public static void main(String[] args) {
-//        int[] arr = new int[]{1,2,3,4,5,6};
-//
-//        for(int e : arr ){
-//            System.out.println(e);
-//        }
 
+        //数组队列和循环队列的效率对比。
+        int opCount = 100000;
 
-        Array<Integer> array = new Array<>(20);
+        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        double time1 = testQueue(arrayQueue, opCount);
+        System.out.println("ArrayQueue, time: " + time1 + " s");
 
-        for(int i = 0; i < 10; i++)
-            array.addLast(i);
-
-        System.out.println(array);
-
-        array.add(1, 100);
-
-        System.out.println(array);
-
-        array.addFirst( -1);
-        System.out.println(array);
-
-        array.remove(2);
-        System.out.println(array);
-
-        array.removeElement(4);
-        System.out.println(array);
-
-        array.removeFirst();
-        System.out.println(array);
+        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        double time2 = testQueue(loopQueue, opCount);
+        System.out.println("loopQueue, time: " + time2 + " s");
     }
 }

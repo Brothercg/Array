@@ -122,6 +122,32 @@ public class LinkedList<E> {
         return false;
     }
 
+    public E remove(int index){
+        if(index < 0 || index > size)
+            throw new IllegalArgumentException("Delete failed. Illegal index.");
+
+        //注意这一行是赋值给dummyHead
+        Node prev = dummyHead  ;
+
+        for(int i = 0; i < index; i++)
+            prev = prev.next;
+
+        Node delNode = prev.next;
+        prev.next = delNode.next;
+
+        delNode.next = null;
+        size --;
+        return delNode.e;
+    }
+
+    public E removeFirst(){
+        return remove(0);
+    }
+
+    public E removeLast(){
+        return remove(size - 1);
+    }
+
     @Override
     public String toString() {
 
@@ -135,8 +161,7 @@ public class LinkedList<E> {
         return res.toString();
     }
 
-
-    public static  void main(String[] args){
+    public static void main(String[] args){
         LinkedList<Integer> linkedList = new LinkedList<>();
 
         for(int i = 0; i < 5; i++){
@@ -147,5 +172,16 @@ public class LinkedList<E> {
 
         linkedList.add(2,666);
         System.out.println(linkedList);
+
+
+        linkedList.remove(2);
+        System.out.println(linkedList);
+
+        linkedList.removeFirst();
+        System.out.println(linkedList);
+
+        linkedList.removeLast();
+        System.out.println(linkedList);
+
     }
 }

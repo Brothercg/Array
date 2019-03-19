@@ -17,7 +17,7 @@ public class Main {
         return (endTime - startTime) / 1000000000.0;
     }
 
-    public static void arrayLoopQueueCompare(int opCount){
+    public static void array_Loop_LinkedList_QueueCompare(int opCount){
         ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         double time1 = testQueue(arrayQueue, opCount);
         System.out.println("ArrayQueue, time: " + time1 + " s");
@@ -25,6 +25,10 @@ public class Main {
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
         double time2 = testQueue(loopQueue, opCount);
         System.out.println("loopQueue, time: " + time2 + " s");
+
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        double time3 = testQueue(loopQueue, opCount);
+        System.out.println("linkedListQueue, time: " + time3 + " s");
     }
 
 
@@ -62,7 +66,7 @@ public class Main {
      *
      * @param opCount
      */
-    public static void arrayLinkedStackCompare(int opCount){
+    public static void array_Linked_StackCompare(int opCount){
 
         ArrayStack<Integer> arrayStack = new ArrayStack<>();
         double time1 = testStack(arrayStack, opCount);
@@ -76,10 +80,10 @@ public class Main {
     public static void main(String[] args) {
 
         //数组队列和循环队列的效率对比。
-        int opCount = 100000;
+        int opCount = 200000;
 //        arrayLoopQueueCompare(opCount);
 
-        arrayLinkedStackCompare(opCount);
+        array_Loop_LinkedList_QueueCompare(opCount);
 
 
     }

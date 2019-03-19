@@ -27,7 +27,7 @@ public class Main {
         System.out.println("loopQueue, time: " + time2 + " s");
 
         LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
-        double time3 = testQueue(loopQueue, opCount);
+        double time3 = testQueue(linkedListQueue, opCount);
         System.out.println("linkedListQueue, time: " + time3 + " s");
     }
 
@@ -80,7 +80,7 @@ public class Main {
     public static void main(String[] args) {
 
         //数组队列和循环队列的效率对比。
-        int opCount = 200000;
+        int opCount = 100000;
 //        arrayLoopQueueCompare(opCount);
 
         array_Loop_LinkedList_QueueCompare(opCount);

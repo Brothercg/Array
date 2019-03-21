@@ -1,3 +1,7 @@
+package Queue;
+
+import Array.Array;
+
 public class ArrayQueue<E> implements Queue<E> {
 
     private Array<E> array;
@@ -7,14 +11,14 @@ public class ArrayQueue<E> implements Queue<E> {
      * @param capacity
      */
     public ArrayQueue(int capacity){
-        array = new Array<>(capacity);
+        array = new Array<E>(capacity);
     }
 
     /**
      * 用户无法估计自己所需队列的大小。
      */
     public ArrayQueue(){
-        array = new Array<>();
+        array = new Array<E>();
     }
 
     @Override
@@ -72,7 +76,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
 
     public static void main(String[] args) {
-        ArrayQueue<Integer> queue = new ArrayQueue<>();
+        ArrayQueue<Integer> queue = new ArrayQueue<Integer>();
 
         for(int i = 0; i < 10000; i++){
             queue.enqueue(i);

@@ -1,12 +1,16 @@
+package Stack;
+
+import Array.Array;
+
 public class ArrayStack<E> implements Stack<E> {
     Array<E> array;
 
     public ArrayStack(int capacity) {
-        array = new Array<>(capacity);
+        array = new Array<E>(capacity);
     }
 
     public ArrayStack() {
-        array = new Array<>();
+        array = new Array<E>();
     }
 
     @Override
@@ -55,7 +59,7 @@ public class ArrayStack<E> implements Stack<E> {
 
 
     public static void main(String[] args) {
-        ArrayStack<Integer> stack = new ArrayStack<>();
+        ArrayStack<Integer> stack = new ArrayStack<Integer>();
 
         for(int i = 0; i < 5; i++){
             stack.push(i);

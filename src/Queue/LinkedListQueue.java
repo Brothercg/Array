@@ -1,3 +1,5 @@
+package Queue;
+
 public class LinkedListQueue<E> implements Queue<E> {
 
     private class Node{
@@ -96,7 +98,7 @@ public class LinkedListQueue<E> implements Queue<E> {
 
 
     public static void main(String[] args) {
-        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+        LinkedListQueue<Integer> queue = new LinkedListQueue<Integer>();
 
         for(int i = 0; i < 10; i++){
             queue.enqueue(i);

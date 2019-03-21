@@ -1,3 +1,5 @@
+package Linklist_Recursive;
+
 public class LinkedList<E> {
 
     private class Node{
@@ -23,6 +25,10 @@ public class LinkedList<E> {
         }
     }
 
+
+    /**
+     * 这是链表的头结点
+     */
     private Node dummyHead;
     int size;
 

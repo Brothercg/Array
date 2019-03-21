@@ -1,3 +1,7 @@
+package Stack;
+
+import Linklist_Recursive.LinkedList;
+
 public class LinkedListStack<E> implements Stack<E> {
 
     private LinkedList<E> list;

@@ -1,3 +1,5 @@
+package Array;
+
 public class Array<E> {
 
     private E[] data;
@@ -180,7 +182,7 @@ public class Array<E> {
 
 
     public static void main(String[] args){
-        Array<Integer> array = new Array<>();
+        Array<Integer> array = new Array<Integer>();
 
         for(int i = 0; i < 10; i++)
             array.addLast(i);

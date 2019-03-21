@@ -1,3 +1,5 @@
+package Queue;
+
 public class LoopQueue<E> implements Queue<E>{
 
     private E[] data;
@@ -99,7 +101,7 @@ public class LoopQueue<E> implements Queue<E>{
     }
 
     public static void main(String[] args) {
-        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        LoopQueue<Integer> loopQueue = new LoopQueue<Integer>();
 
         for(int i = 0; i < 10; i++){
             loopQueue.enqueue(i);

@@ -9,9 +9,9 @@ public class Main {
 
         int opCount = 100000;
 
-        StackTest.array_Linked_StackCompare(opCount);
-
-        QueueTest.array_Loop_LinkedList_QueueCompare(opCount);
+//        StackTest.array_Linked_StackCompare(opCount);
+//
+//        QueueTest.array_Loop_LinkedList_QueueCompare(opCount);
 
     }
 }

@@ -33,6 +33,13 @@ public class Array<E> {
         return size == 0;
     }
 
+
+    /**
+     *  复习到这里的时候，尝试这个实现下递归实现
+     * @param index
+     * @param e
+     */
+
     public void add(int index, E e){
 
         if(index < 0|| index > size){

@@ -1,9 +1,15 @@
 package BInarySearchTree;
 
 
+import com.sun.tools.javac.file.SymbolArchive;
+
+import java.util.*;
+
 //树上的元素需要是可比较的
 public class BST<E extends Comparable<E>>  {
+
     private class Node{
+
         private E e;
         private Node left, right;
 
@@ -154,6 +160,222 @@ public class BST<E extends Comparable<E>>  {
     }
 
 
+    /**
+     * 递归中序遍历
+     */
+    public void inOrder() {
+        inOrder(root);
+    }
+
+    private void inOrder(Node node) {
+
+        if (node == null)
+            return;
+
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+
+    /**
+     * 递归后序遍历
+     */
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    private void postOrder(Node node) {
+
+        if (node == null)
+            return;
+
+        postOrder(node.left);
+        postOrder(node.right);
+
+        System.out.println(node.e);
+    }
+
+    /**
+     * 前序非递归思想：
+     *  1、用一个栈来实现。
+     *  2、根节点先入栈。
+     *  3、栈不空的时候，栈顶出栈，并输出栈顶元素。
+     *  4、在出站元素左右子树不为空的情况下，先入右子树，后入左子树。
+     */
+    public void preOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while(!stack.isEmpty()){
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if(cur.right != null)
+                stack.push(cur.right);
+
+            if(cur.left != null)
+                stack.push(cur.left);
+
+        }
+    }
+
+    public void levelOrder(){
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+            Node cur = queue.remove();
+            System.out.println(cur.e  );
+
+            if(cur.left != null)
+                queue.add(cur.left);
+
+            if(cur.right != null)
+                queue.add(cur.right);
+
+        }
+    }
+
+    /**
+     *  1、参考经典教科书实现另外两种的非递归。
+     *  2、并学习《玩转算法面试》中完全模拟系统栈的写法。
+     * @return
+     */
+
+
+
+
+
+
+
+
+    // 寻找二分搜索树的最小元素
+    public E minimum(){
+        if(size == 0)
+            throw new IllegalArgumentException("BST is empty");
+
+        Node minNode = minimum(root);
+        return minNode.e;
+    }
+
+    // 返回以node为根的二分搜索树的最小值所在的节点
+    private Node minimum(Node node){
+        if( node.left == null )
+            return node;
+
+        return minimum(node.left);
+    }
+
+    // 寻找二分搜索树的最大元素
+    public E maximum(){
+        if(size == 0)
+            throw new IllegalArgumentException("BST is empty");
+
+        return maximum(root).e;
+    }
+
+    // 返回以node为根的二分搜索树的最大值所在的节点
+    private Node maximum(Node node){
+        if( node.right == null )
+            return node;
+
+        return maximum(node.right);
+    }
+
+    // 从二分搜索树中删除最小值所在节点, 返回最小值
+    public E removeMin(){
+        E ret = minimum();
+        root = removeMin(root);
+        return ret;
+    }
+
+    // 删除掉以node为根的二分搜索树中的最小节点
+    // 返回删除节点后新的二分搜索树的根
+    private Node removeMin(Node node){
+
+        if(node.left == null){
+            Node rightNode = node.right;
+            node.right = null;
+            size --;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    // 从二分搜索树中删除最大值所在节点
+    public E removeMax(){
+        E ret = maximum();
+        root = removeMax(root);
+        return ret;
+    }
+
+    // 删除掉以node为根的二分搜索树中的最大节点
+    // 返回删除节点后新的二分搜索树的根
+    private Node removeMax(Node node){
+
+        if(node.right == null){
+            Node leftNode = node.left;
+            node.left = null;
+            size --;
+            return leftNode;
+        }
+
+        node.right = removeMax(node.right);
+        return node;
+    }
+
+
+    public void remove(E e){
+        root = remove(root, e);
+    }
+
+    private Node remove(Node node, E e) {
+        if(node == null)
+            return null;
+
+        if(e.compareTo(node.e) < 0){
+            node.left = remove(node.left, e);
+            return node;
+        }else if(e.compareTo(node.e) > 0){
+            node.right = remove(node.right, e);
+            return node;
+        }else { //e == node.e 找到需要删除的节点
+
+            //左子树为空的处理情况
+            if(node.left == null){
+                Node rightNode = node.right;
+                node.right = null;
+                size --;
+                return  rightNode;
+            }
+
+            //右子树为空的处理情况
+            if(node.right == null){
+                Node leftNode = node.left;
+                node.left = null;
+                size --;
+                return  leftNode;
+            }
+
+            //左右子树都不为空的处理情况
+            //找到逼待删除节点大的最小节点，即待删除节点的右子树的最小节点，用此节点顶替待删除节点。
+            Node successor = minimum(node.right);
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+
+            node.left = node.right = null;
+
+            return successor;
+
+
+        }
+
+
+    }
+
 
     @Override
     public String toString(){
@@ -187,22 +409,82 @@ public class BST<E extends Comparable<E>>  {
 
     public static void main(String[] args) {
 
+//        BST<Integer> bst = new BST<>();
+//        int[] nums = {5, 3, 6, 8, 4, 2};
+//        for(int num: nums)
+//            bst.add(num);
+//
+//        /////////////////
+//        //      5      //
+//        //    /   \    //
+//        //   3    6    //
+//        //  / \    \   //
+//        // 2  4     8  //
+//        /////////////////
+//
+//        System.out.println("前序");
+//        bst.preOrder();
+//        System.out.println("===============");
+//
+//        System.out.println("中序");
+//        //二分搜索树的中序输出是有序的
+//        bst.inOrder();
+//        System.out.println("===============");
+//
+//        System.out.println("后序");
+//        bst.postOrder();
+//        System.out.println("===============");
+//
+//        System.out.println("前序非递归");
+//        bst.preOrderNR();
+//        System.out.println("===============");
+//
+//
+//        System.out.println("层次遍历");
+//        bst.levelOrder();
+//        System.out.println("===============");
+
+//        System.out.println();
+//
+//        System.out.println(bst);
+
+
+
         BST<Integer> bst = new BST<>();
-        int[] nums = {5, 3, 6, 8, 4, 2};
-        for(int num: nums)
-            bst.add(num);
+        Random random = new Random();
 
-        /////////////////
-        //      5      //
-        //    /   \    //
-        //   3    6    //
-        //  / \    \   //
-        // 2  4     8  //
-        /////////////////
-        bst.preOrder();
-        System.out.println();
+        int n = 1000;
 
-        System.out.println(bst);
+        // test removeMin
+        for(int i = 0 ; i < n ; i ++)
+            bst.add(random.nextInt(10000));
+
+        ArrayList<Integer> nums = new ArrayList<>();
+        while(!bst.isEmpty())
+            nums.add(bst.removeMin());
+
+        System.out.println(nums);
+        for(int i = 1 ; i < nums.size() ; i ++)
+            if(nums.get(i - 1) > nums.get(i))
+                throw new IllegalArgumentException("Error!");
+        System.out.println("removeMin test completed.");
+
+
+        // test removeMax
+        for(int i = 0 ; i < n ; i ++)
+            bst.add(random.nextInt(10000));
+
+        nums = new ArrayList<>();
+        while(!bst.isEmpty())
+            nums.add(bst.removeMax());
+
+        System.out.println(nums);
+        for(int i = 1 ; i < nums.size() ; i ++)
+            if(nums.get(i - 1) < nums.get(i))
+                throw new IllegalArgumentException("Error!");
+        System.out.println("removeMax test completed.");
+
+
     }
 
 

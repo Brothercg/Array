@@ -361,7 +361,7 @@ public class BST<E extends Comparable<E>>  {
             }
 
             //左右子树都不为空的处理情况
-            //找到逼待删除节点大的最小节点，即待删除节点的右子树的最小节点，用此节点顶替待删除节点。
+            //找到删除节点大的最小节点，即待删除节点的右子树的最小节点，用此节点顶替待删除节点。
             Node successor = minimum(node.right);
             successor.right = removeMin(node.right);
             successor.left = node.left;
@@ -370,9 +370,7 @@ public class BST<E extends Comparable<E>>  {
 
             return successor;
 
-
         }
-
 
     }
 

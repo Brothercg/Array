@@ -1,7 +1,8 @@
 package Set;
 
+import Utils.FileOperation;
+
 import java.util.ArrayList;
-import java.util.Random;
 
 public class SetTest {
 
@@ -32,8 +33,8 @@ public class SetTest {
         String name1 = "傲慢与偏见文本词汇数据统计";
         String name2 = "双城记文本词汇数据统计";
 
-        String path1 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/Set/data/pride-and-prejudice.txt";
-        String path2 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/Set/data/a-tale-of-two-cities.txt";
+        String path1 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/data/pride-and-prejudice.txt";
+        String path2 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/data/a-tale-of-two-cities.txt";
 
         BSTSet<String> bstSet1 = new BSTSet<String>();
         double time1 = testSet(bstSet1, name1, path1 );

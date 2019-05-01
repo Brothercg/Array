@@ -1,6 +1,7 @@
 package Set;
 
 import Linklist_Recursive.LinkedList;
+import Utils.FileOperation;
 
 import java.util.ArrayList;
 
@@ -57,8 +58,8 @@ public class LinkedListSet<E> implements Set<E> {
 
     public static void main(String[] args){
         //为啥子输入绝对路径才ok？
-        String path1 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/Set/data/pride-and-prejudice.txt";
-        String path2 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/Set/data/a-tale-of-two-cities.txt";
+        String path1 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/data/pride-and-prejudice.txt";
+        String path2 = "/Users/chenguang/IdeaProjects/Data-Structures/DataStruct/src/data/a-tale-of-two-cities.txt";
 
         txtDataStatic("傲慢与偏见文本词汇数据统计", path1);
 

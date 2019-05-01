@@ -1,3 +1,4 @@
+import Map.MapTest;
 import Queue.QueueTest;
 import Set.SetTest;
 import Stack.StackTest;
@@ -14,7 +15,9 @@ public class Main {
 
 //        QueueTest.array_Loop_LinkedList_QueueCompare(opCount);
 
-        SetTest.BST_LinkedList_Set_Compare();
+//        SetTest.BST_LinkedList_Set_Compare();
+
+        MapTest.BST_LinkedList_Map_Compare();
 
 
 
